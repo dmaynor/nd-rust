@@ -1,0 +1,24 @@
+[workspace]
+members = [
+    "crates/nd_core", # Corrected name
+    "crates/db",
+    "crates/web",
+    "crates/cli",
+    ".", # Include the root crate itself
+]
+resolver = "2" # Recommended for workspaces
+
+[package]
+name = "nd-rust"
+version = "0.1.0"
+edition = "2021"
+
+# This package is the main binary entry point
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+# Add dependencies for the main binary here, if any
+# For example:
+# nd_core = { path = "crates/nd_core" }
+# tokio = { version = "1", features = ["full"] }

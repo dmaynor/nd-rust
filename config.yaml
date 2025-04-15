@@ -1,0 +1,6 @@
+# Sample configuration for nd-rust
+
+debug: true
+
+database:
+  url: "postgres://test_user:test_password@127.0.0.1/nd_rust_db" 
