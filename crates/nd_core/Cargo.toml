@@ -4,3 +4,17 @@ version = "0.1.0"
 edition = "2024"
 
 [dependencies]
+config = { version = "0.14", features = ["yaml"] }
+serde = { version = "1.0", features = ["derive"] }
+serde_yaml = "0.9"
+
+rand = "0.8"
+tokio = { version = "1", features = ["rt", "net", "time"] }
+tracing = "0.1"
+
+# Remove incorrect netsnmp
+# netsnmp = "0.1.1"
+
+snmp = "0.2.2" # SNMP client library
+thiserror = "1.0" # For custom SnmpError
+oid = "0.2" # For OID handling 

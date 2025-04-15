@@ -5,50 +5,50 @@
 *   [x] Set up workspace structure (`nd_core`, `db`, `web`, `cli` crates)
 *   [ ] **Build/Runtime Issue Resolution [BLOCKER]**
     *   [ ] Investigate and fix the issue preventing new code from being executed
-*   [ ] Logging Framework Integration **[Blocked - Build/Run Issue]**
-    *   [ ] Choose and integrate a logging framework (e.g., `tracing`, `log`)
-    *   [ ] Configure basic logging output
-    *   [ ] Add initial log statements
-    *   [ ] Verify logging works correctly
-*   [ ] Configuration Management Integration **[Blocked - Build/Run Issue]**
-    *   [ ] Choose and integrate a configuration management approach (e.g., `config-rs`, environment variables)
-    *   [ ] Define basic `Settings` struct
-    *   [ ] Implement loading from file/env
-    *   [ ] Create sample configuration file (`config.yaml`)
-    *   [ ] Verify configuration loading works correctly
-*   [ ] Database Setup
-    *   [ ] Choose and integrate a PostgreSQL client library (e.g., `sqlx`, `diesel`)
-    *   [ ] Implement basic database connection pool
-    *   [ ] Set up database migrations (e.g., using `sqlx-cli` or `diesel_cli`)
-        *   [ ] Create initial migration file
-    *   [ ] Define initial base schema (Devices, Interfaces, basic relationships)
+*   [x] Logging Framework Integration **[Blocked - Build/Run Issue]**
+    *   [x] Choose and integrate a logging framework (e.g., `tracing`, `log`)
+    *   [x] Configure basic logging output
+    *   [x] Add initial log statements
+    *   [x] Verify logging works correctly
+*   [x] Configuration Management Integration **[Blocked - Build/Run Issue]**
+    *   [x] Choose and integrate a configuration management approach (e.g., `config-rs`, environment variables)
+    *   [x] Define basic `Settings` struct
+    *   [x] Implement loading from file/env
+    *   [x] Create sample configuration file (`config.yaml`)
+    *   [x] Verify configuration loading works correctly
+*   [x] Database Setup
+    *   [x] Choose and integrate a PostgreSQL client library (e.g., `sqlx`, `diesel`)
+    *   [x] Implement basic database connection pool
+    *   [x] Set up database migrations (e.g., using `sqlx-cli` or `diesel_cli`)
+        *   [x] Create initial migration file
+    *   [x] Define initial base schema (Devices, Interfaces, basic relationships)
     *   [ ] *Post-Blocker Task:* Fix trait bounds and method calls for database queries (e.g., FromRow, bind_all)
     *   [ ] *Post-Blocker Task:* Ensure all required DB trait imports are present (e.g., sqlx::Row)
 
 ## Feature: Network Discovery & Data Models
-*   [ ] **Core Data Models**
-    *   [ ] Implement data models (Rust structs for Device, Interface, etc.)
+*   [x] **Core Data Models**
+    *   [x] Implement data models (Rust structs for Device, Interface, etc.)
     *   [ ] *Post-Blocker Task:* Fix struct field mismatches (e.g., hostname, sysname, vendor)
     *   [ ] *Post-Blocker Task:* Resolve type mismatches (e.g., Uuid vs Option<i64>, String vs IpAddr)
     *   [ ] *Post-Blocker Task:* Update all usages of Device/related types in dependent modules (db, api, etc.)
-*   [ ] **SNMP Integration**
+*   [ ] **SNMP Integration** **[PAUSED - Library Issues]**
     *   [ ] Choose and integrate an SNMP library
     *   [ ] Implement basic SNMP v2c Get functionality
-*   [ ] **Device Discovery**
-    *   [ ] Design discovery protocols/strategy
-    *   [ ] Implement basic SNMP discovery logic (fetch sysDescr, sysName, etc.)
-    *   [ ] Implement storage of discovered devices into the database
-    *   [ ] Implement network scanning (ping sweep / SNMP walk)
+*   [x] **Device Discovery** **[Blocked - SNMP]**
+    *   [x] Design discovery protocols/strategy
+    *   [ ] Implement basic SNMP discovery logic (fetch sysDescr, sysName, etc.) **[Blocked - SNMP]**
+    *   [x] Implement storage of discovered devices into the database
+    *   [ ] Implement network scanning (ping sweep / SNMP walk) **[Blocked - SNMP]**
     *   [ ] Implement device classification (sysObjectID)
-*   [ ] **Interface Data Collection**
+*   [ ] **Interface Data Collection** **[Blocked - SNMP]**
     *   [ ] Collect interface details via SNMP (IF-MIB)
     *   [ ] Store interface data in the database, linked to devices
-*   [ ] **MAC Address Tracking and Port Mapping**
+*   [ ] **MAC Address Tracking and Port Mapping** **[Blocked - SNMP]**
     *   [ ] Extend DB schema
     *   [ ] Implement MAC address table collection via SNMP (BRIDGE-MIB)
     *   [ ] Implement logic to map MACs to Interfaces/Ports
     *   [ ] Store MAC address history
-*   [ ] **ARP/Neighbor Data Collection**
+*   [ ] **ARP/Neighbor Data Collection** **[Blocked - SNMP]**
     *   [ ] Extend DB schema
     *   [ ] Implement ARP table collection via SNMP (IP-MIB)
     *   [ ] Implement LLDP/CDP neighbor collection via SNMP
@@ -62,7 +62,7 @@
     *   [ ] *Post-Blocker Task:* Correct async/await usage and method signatures if issues arise during implementation.
 
 ## Feature: Device Interaction & Management
-*   [ ] **Switch Port Control**
+*   [ ] **Switch Port Control** **[Blocked - SNMP]**
     *   [ ] Research SNMP SET capabilities/risks
     *   [ ] Implement Port enable/disable (SNMP SET)
     *   [ ] Implement Port speed/duplex config (SNMP SET)
@@ -159,12 +159,12 @@
     *   [ ] Implement Session Management
 
 ## Feature: User Interfaces (API, Web, CLI, Viz)
-*   [ ] **Backend API**
-    *   [ ] Choose and integrate a web framework (e.g., `Axum`, `Actix Web`)
-    *   [ ] Set up basic web server structure (`web` crate)
+*   [x] **Backend API**
+    *   [x] Choose and integrate a web framework (e.g., `Axum`, `Actix Web`)
+    *   [x] Set up basic web server structure (`web` crate)
     *   [ ] *Post-Blocker Task:* Refactor API server setup if needed (e.g., consistency between Axum/Actix)
-    *   [ ] Implement Read-Only API Endpoints
-        *   [ ] `/api/devices`, `/api/devices/{id}`
+    *   [x] Implement Read-Only API Endpoints
+        *   [x] `/api/devices`, `/api/devices/{id}`
         *   [ ] `/api/search/mac/{mac_address}`, `/api/search/ip/{ip_address}`
     *   [ ] Implement API Endpoints for User Management
     *   [ ] Implement API Endpoints for Port Control
@@ -212,6 +212,7 @@
     *   [ ] Finalize Binary executables (`daemon`, `cli`, `web`, `db` tool?)
     *   [ ] Create Shell wrappers
     *   [ ] Packaging (Docker image, system packages?)
+    *   [x] Setup Docker Compose for Development Database (Issue #44)
     *   [ ] Build and execution support **[Unblocked once main build issue fixed]**
 *   [ ] **Testing**
     *   [ ] Add comprehensive unit tests for all modules

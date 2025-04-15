@@ -4,7 +4,7 @@ members = [
     "crates/db",
     "crates/web",
     "crates/cli",
-    ".", # Include the root crate itself
+    ".", "crates/discovery", # Include the root crate itself
 ]
 resolver = "2" # Recommended for workspaces
 
@@ -24,3 +24,6 @@ nd_core = { path = "crates/nd_core" }
 tokio = { version = "1", features = ["full"] }
 tracing = "0.1"
 tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+
+db = { path = "crates/db" } # Add dependency on db crate
+web = { path = "crates/web" } # Add dependency on web crate
