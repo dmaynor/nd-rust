@@ -33,4 +33,8 @@ impl Settings {
 // pub use discovery::{DiscoveryJob, DiscoveryResult, DiscoveryManager, DiscoveryTarget, DiscoveryError, SnmpCredentials};
 
 mod snmp;
-pub use snmp::{snmp_get_v2c, SnmpError, SnmpValueOwned};
+pub use snmp::{snmp_get_v2c, snmp_walk_v2c, SnmpError, SnmpValueOwned};
+
+// Add new interfaces module for SNMP interface collection
+mod interfaces;
+pub use interfaces::{collect_interfaces, InterfaceCollectionError};
