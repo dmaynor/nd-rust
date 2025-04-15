@@ -2,6 +2,9 @@ use sqlx::postgres::{PgPool, PgPoolOptions};
 use nd_core::Settings;
 use std::time::Duration;
 
+mod models;
+pub use models::{Device, DeviceStatus, Interface}; // Be explicit for clarity
+
 // Re-export pool for easier use in other crates
 // pub use sqlx::PgPool; // Removed redundant re-export
 
