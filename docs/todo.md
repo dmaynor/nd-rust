@@ -31,24 +31,24 @@
     *   [ ] *Post-Blocker Task:* Fix struct field mismatches (e.g., hostname, sysname, vendor)
     *   [ ] *Post-Blocker Task:* Resolve type mismatches (e.g., Uuid vs Option<i64>, String vs IpAddr)
     *   [ ] *Post-Blocker Task:* Update all usages of Device/related types in dependent modules (db, api, etc.)
-*   [ ] **SNMP Integration**
+*   [ ] **SNMP Integration** **[PAUSED - Library Issues]**
     *   [ ] Choose and integrate an SNMP library
     *   [ ] Implement basic SNMP v2c Get functionality
-*   [ ] **Device Discovery**
+*   [ ] **Device Discovery** **[Blocked - SNMP]**
     *   [ ] Design discovery protocols/strategy
     *   [ ] Implement basic SNMP discovery logic (fetch sysDescr, sysName, etc.)
     *   [ ] Implement storage of discovered devices into the database
     *   [ ] Implement network scanning (ping sweep / SNMP walk)
     *   [ ] Implement device classification (sysObjectID)
-*   [ ] **Interface Data Collection**
+*   [ ] **Interface Data Collection** **[Blocked - SNMP]**
     *   [ ] Collect interface details via SNMP (IF-MIB)
     *   [ ] Store interface data in the database, linked to devices
-*   [ ] **MAC Address Tracking and Port Mapping**
+*   [ ] **MAC Address Tracking and Port Mapping** **[Blocked - SNMP]**
     *   [ ] Extend DB schema
     *   [ ] Implement MAC address table collection via SNMP (BRIDGE-MIB)
     *   [ ] Implement logic to map MACs to Interfaces/Ports
     *   [ ] Store MAC address history
-*   [ ] **ARP/Neighbor Data Collection**
+*   [ ] **ARP/Neighbor Data Collection** **[Blocked - SNMP]**
     *   [ ] Extend DB schema
     *   [ ] Implement ARP table collection via SNMP (IP-MIB)
     *   [ ] Implement LLDP/CDP neighbor collection via SNMP
@@ -62,7 +62,7 @@
     *   [ ] *Post-Blocker Task:* Correct async/await usage and method signatures if issues arise during implementation.
 
 ## Feature: Device Interaction & Management
-*   [ ] **Switch Port Control**
+*   [ ] **Switch Port Control** **[Blocked - SNMP]**
     *   [ ] Research SNMP SET capabilities/risks
     *   [ ] Implement Port enable/disable (SNMP SET)
     *   [ ] Implement Port speed/duplex config (SNMP SET)

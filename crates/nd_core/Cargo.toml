@@ -7,3 +7,8 @@ edition = "2024"
 config = { version = "0.14", features = ["yaml"] }
 serde = { version = "1.0", features = ["derive"] }
 serde_yaml = "0.9"
+
+thiserror = "1.0"
+rand = "0.8"
+tokio = { version = "1", features = ["rt", "net", "time"] }
+tracing = "0.1"
