@@ -1,4 +1,5 @@
 use tracing_subscriber::{EnvFilter, fmt};
+use nd_core::Settings; // Import Settings
 
 fn main() {
     // Initialize tracing subscriber
@@ -11,6 +12,21 @@ fn main() {
         .init();
 
     tracing::info!("Application starting");
+
+    // Load configuration
+    match Settings::new() {
+        Ok(settings) => {
+            tracing::info!(?settings, "Configuration loaded successfully");
+            // Optionally use settings.log_level here later to configure tracing further
+        }
+        Err(e) => {
+            tracing::error!(error = %e, "Failed to load configuration");
+            // Decide how to handle config errors - exit? use defaults?
+            eprintln!("Error loading configuration: {}", e);
+            std::process::exit(1);
+        }
+    }
+
     println!("Hello, world!");
     tracing::info!("Application finished");
 }
