@@ -27,3 +27,6 @@ impl Settings {
         s.try_deserialize()
     }
 }
+
+mod discovery;
+pub use discovery::{DiscoveryJob, DiscoveryResult, DiscoveryManager};
