@@ -20,5 +20,7 @@ edition = "2021"
 [dependencies]
 # Add dependencies for the main binary here, if any
 # For example:
-# nd_core = { path = "crates/nd_core" }
-# tokio = { version = "1", features = ["full"] }
+nd_core = { path = "crates/nd_core" }
+tokio = { version = "1", features = ["full"] }
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
