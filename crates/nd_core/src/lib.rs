@@ -1,14 +1,29 @@
-pub fn add(left: u64, right: u64) -> u64 {
-    left + right
+use serde::Deserialize;
+
+#[derive(Debug, Deserialize)]
+pub struct DatabaseSettings {
+    pub url: Option<String>,
 }
 
-#[cfg(test)]
-mod tests {
-    use super::*;
+#[derive(Debug, Deserialize)]
+pub struct Settings {
+    pub debug: Option<bool>,
+    pub database: Option<DatabaseSettings>,
+    pub log_level: Option<String>,
+}
 
-    #[test]
-    fn it_works() {
-        let result = add(2, 2);
-        assert_eq!(result, 4);
+impl Settings {
+    pub fn new() -> Result<Self, config::ConfigError> {
+        let config_path = std::env::var("ND_CONFIG_PATH").unwrap_or_else(|_| "config.yaml".to_string());
+
+        let s = config::Config::builder()
+            // Start off by merging in the default configuration file
+            .add_source(config::File::with_name(&config_path).required(false))
+            // Add in settings from the environment (with a prefix of ND)
+            // Eg.. `ND_DATABASE__URL=...` would set the `database.url` field
+            .add_source(config::Environment::with_prefix("nd").separator("__")) // Use double underscore for nested
+            .build()?;
+
+        s.try_deserialize()
     }
 }
