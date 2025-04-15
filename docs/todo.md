@@ -16,12 +16,12 @@
     *   [x] Implement loading from file/env
     *   [x] Create sample configuration file (`config.yaml`)
     *   [x] Verify configuration loading works correctly
-*   [ ] Database Setup
-    *   [ ] Choose and integrate a PostgreSQL client library (e.g., `sqlx`, `diesel`)
-    *   [ ] Implement basic database connection pool
-    *   [ ] Set up database migrations (e.g., using `sqlx-cli` or `diesel_cli`)
-        *   [ ] Create initial migration file
-    *   [ ] Define initial base schema (Devices, Interfaces, basic relationships)
+*   [x] Database Setup
+    *   [x] Choose and integrate a PostgreSQL client library (e.g., `sqlx`, `diesel`)
+    *   [x] Implement basic database connection pool
+    *   [x] Set up database migrations (e.g., using `sqlx-cli` or `diesel_cli`)
+        *   [x] Create initial migration file
+    *   [x] Define initial base schema (Devices, Interfaces, basic relationships)
     *   [ ] *Post-Blocker Task:* Fix trait bounds and method calls for database queries (e.g., FromRow, bind_all)
     *   [ ] *Post-Blocker Task:* Ensure all required DB trait imports are present (e.g., sqlx::Row)
 
