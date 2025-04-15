@@ -1,1 +1,7 @@
-/target
+# Environment variables
+.env
+
+# Rust target directory
+/target/
+# Rust Cargo lock file (optional, depends on policy)
+# Cargo.lock

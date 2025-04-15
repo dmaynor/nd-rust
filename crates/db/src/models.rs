@@ -1,4 +1,4 @@
-use time::{OffsetDateTime, PrimitiveDateTime};
+use time::OffsetDateTime;
 use uuid::Uuid;
 use ipnetwork::IpNetwork;
 use sqlx::{FromRow, Type};
@@ -11,6 +11,20 @@ pub enum DeviceStatus {
     Up,
     Down,
     Unknown,
+}
+
+// Allow converting from String (case-insensitive) for manual mapping
+impl TryFrom<String> for DeviceStatus {
+    type Error = String;
+
+    fn try_from(value: String) -> Result<Self, Self::Error> {
+        match value.to_lowercase().as_str() {
+            "up" => Ok(DeviceStatus::Up),
+            "down" => Ok(DeviceStatus::Down),
+            "unknown" => Ok(DeviceStatus::Unknown),
+            _ => Err(format!("Invalid device status string: {}", value)),
+        }
+    }
 }
 
 // Struct corresponding to the 'devices' table
@@ -26,11 +40,8 @@ pub struct Device {
     pub os_version: Option<String>,
     pub serial_number: Option<String>,
     pub status: Option<DeviceStatus>, // Mapped from device_status enum
-    #[sqlx(default)] // Handle potential NULL in DB or missing field
     pub last_seen: Option<OffsetDateTime>, // TIMESTAMPTZ maps to OffsetDateTime
-    #[sqlx(default)]
     pub created_at: OffsetDateTime, 
-    #[sqlx(default)]
     pub updated_at: OffsetDateTime,
 }
 
@@ -51,10 +62,7 @@ pub struct Interface {
     pub oper_status: Option<String>,
     pub speed: Option<i64>, // BIGINT maps to i64
     pub mtu: Option<i32>,
-    #[sqlx(default)]
     pub last_changed: Option<OffsetDateTime>,
-    #[sqlx(default)]
     pub created_at: OffsetDateTime,
-    #[sqlx(default)]
     pub updated_at: OffsetDateTime,
 } 
