@@ -34,7 +34,7 @@
 *   [ ] **SNMP Integration** **[PAUSED - Library Issues]**
     *   [ ] Choose and integrate an SNMP library
     *   [ ] Implement basic SNMP v2c Get functionality
-*   [ ] **Device Discovery** **[Blocked - SNMP]**
+*   [x] **Device Discovery** **[Blocked - SNMP]**
     *   [x] Design discovery protocols/strategy
     *   [ ] Implement basic SNMP discovery logic (fetch sysDescr, sysName, etc.) **[Blocked - SNMP]**
     *   [x] Implement storage of discovered devices into the database
