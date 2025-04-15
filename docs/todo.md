@@ -37,7 +37,7 @@
 *   [ ] **Device Discovery** **[Blocked - SNMP]**
     *   [x] Design discovery protocols/strategy
     *   [ ] Implement basic SNMP discovery logic (fetch sysDescr, sysName, etc.) **[Blocked - SNMP]**
-    *   [ ] Implement storage of discovered devices into the database
+    *   [x] Implement storage of discovered devices into the database
     *   [ ] Implement network scanning (ping sweep / SNMP walk) **[Blocked - SNMP]**
     *   [ ] Implement device classification (sysObjectID)
 *   [ ] **Interface Data Collection** **[Blocked - SNMP]**
