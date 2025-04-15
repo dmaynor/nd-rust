@@ -35,10 +35,10 @@
     *   [ ] Choose and integrate an SNMP library
     *   [ ] Implement basic SNMP v2c Get functionality
 *   [ ] **Device Discovery** **[Blocked - SNMP]**
-    *   [ ] Design discovery protocols/strategy
-    *   [ ] Implement basic SNMP discovery logic (fetch sysDescr, sysName, etc.)
+    *   [x] Design discovery protocols/strategy
+    *   [ ] Implement basic SNMP discovery logic (fetch sysDescr, sysName, etc.) **[Blocked - SNMP]**
     *   [ ] Implement storage of discovered devices into the database
-    *   [ ] Implement network scanning (ping sweep / SNMP walk)
+    *   [ ] Implement network scanning (ping sweep / SNMP walk) **[Blocked - SNMP]**
     *   [ ] Implement device classification (sysObjectID)
 *   [ ] **Interface Data Collection** **[Blocked - SNMP]**
     *   [ ] Collect interface details via SNMP (IF-MIB)
