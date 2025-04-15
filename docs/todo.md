@@ -218,6 +218,7 @@
     *   [ ] Add comprehensive unit tests for all modules
     *   [ ] Add integration tests for feature interactions
     *   [ ] Add end-to-end tests simulating user workflows
+    *   [ ] Create Docker Compose setup for multiple SNMP test targets with varying configurations (v2c communities, IF-MIB, BRIDGE-MIB, IP-MIB, read-write, etc.).
     *   [ ] Set up and run `cargo test` regularly
     *   [ ] Fix any test failures
     *   [ ] Set up code coverage analysis

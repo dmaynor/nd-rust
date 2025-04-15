@@ -18,3 +18,6 @@ tracing = "0.1"
 snmp = "0.2.2" # SNMP client library
 thiserror = "1.0" # For custom SnmpError
 oid = "0.2" # For OID handling 
+
+[dev-dependencies]
+tokio = { version = "1", features = ["macros", "rt-multi-thread"] } # For async tests
