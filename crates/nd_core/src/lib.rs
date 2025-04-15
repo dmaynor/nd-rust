@@ -31,3 +31,6 @@ impl Settings {
 // Remove discovery re-export
 // mod discovery;
 // pub use discovery::{DiscoveryJob, DiscoveryResult, DiscoveryManager, DiscoveryTarget, DiscoveryError, SnmpCredentials};
+
+mod snmp;
+pub use snmp::{snmp_get_v2c, SnmpError, SnmpValueOwned};

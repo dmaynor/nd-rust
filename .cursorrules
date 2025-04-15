@@ -102,3 +102,18 @@ The units of information that make up Conventional Commits MUST NOT be treated a
 BREAKING-CHANGE MUST be synonymous with BREAKING CHANGE, when used as a token in a footer.
 
 29. **Writing Clean Code**: When writing or refactoring code, follow the principles outlined in the [Project Coding Guidelines](docs/coding.md).
+
+30. **Rust Crate Integration Best Practices**: When working with Rust crates, particularly those with limited documentation:
+
+    - **Source Examination**: Examine source code directly when documentation is limited or unclear.
+    - **Buffer Allocation**: Be mindful of buffer allocation and ownership when working with FFI or custom data structures:
+      ```rust
+      // Example: Pre-allocate buffers for libraries that need them
+      let mut buffer = [0u32; 128];
+      let result = some_method.read_into_buffer(&mut buffer)?;
+      ```
+    - **Type Variants**: Pay attention to enum variant naming patterns which may not match expectations.
+    - **Error Conversion**: Implement proper error type conversion between crates using thiserror or custom From implementations.
+    - **Async Boundaries**: Use `tokio::task::spawn_blocking` when calling synchronous library functions from async contexts.
+    - **Incremental Development**: Test small segments of functionality in isolation before completing the implementation.
+    - **Version Pinning**: Pin exact dependency versions when working with crates that have breaking changes between minor versions.
