@@ -5,17 +5,17 @@
 *   [x] Set up workspace structure (`nd_core`, `db`, `web`, `cli` crates)
 *   [ ] **Build/Runtime Issue Resolution [BLOCKER]**
     *   [ ] Investigate and fix the issue preventing new code from being executed
-*   [ ] Logging Framework Integration **[Blocked - Build/Run Issue]**
-    *   [ ] Choose and integrate a logging framework (e.g., `tracing`, `log`)
-    *   [ ] Configure basic logging output
-    *   [ ] Add initial log statements
-    *   [ ] Verify logging works correctly
-*   [ ] Configuration Management Integration **[Blocked - Build/Run Issue]**
-    *   [ ] Choose and integrate a configuration management approach (e.g., `config-rs`, environment variables)
-    *   [ ] Define basic `Settings` struct
-    *   [ ] Implement loading from file/env
-    *   [ ] Create sample configuration file (`config.yaml`)
-    *   [ ] Verify configuration loading works correctly
+*   [x] Logging Framework Integration **[Blocked - Build/Run Issue]**
+    *   [x] Choose and integrate a logging framework (e.g., `tracing`, `log`)
+    *   [x] Configure basic logging output
+    *   [x] Add initial log statements
+    *   [x] Verify logging works correctly
+*   [x] Configuration Management Integration **[Blocked - Build/Run Issue]**
+    *   [x] Choose and integrate a configuration management approach (e.g., `config-rs`, environment variables)
+    *   [x] Define basic `Settings` struct
+    *   [x] Implement loading from file/env
+    *   [x] Create sample configuration file (`config.yaml`)
+    *   [x] Verify configuration loading works correctly
 *   [ ] Database Setup
     *   [ ] Choose and integrate a PostgreSQL client library (e.g., `sqlx`, `diesel`)
     *   [ ] Implement basic database connection pool
