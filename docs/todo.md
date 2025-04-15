@@ -34,6 +34,9 @@
 *   [x] **SNMP Integration** **[COMPLETED]**
     *   [x] Choose and integrate an SNMP library
     *   [x] Implement basic SNMP v2c Get functionality
+    *   [x] Implement robust handling of ObjectIdentifier in SNMP integration
+    *   [x] Implement snmp_walk_v2c and update interface collection
+    *   [x] Simplify OID handling in SNMP module
 *   [x] **Device Discovery** **[Partially implemented]**
     *   [x] Design discovery protocols/strategy
     *   [x] Implement basic SNMP discovery logic (fetch sysDescr, sysName, etc.)
@@ -251,4 +254,10 @@
 *   Each task should be documented in design_doc.md before implementation
 *   Follow the change management process for all new features
 *   Consider backward compatibility when implementing new features
-*   Include appropriate testing for all new functionality 
+*   Include appropriate testing for all new functionality
+
+## Next Steps
+*   [ ] **Build Docker Test Targets**
+    *   [ ] Create Dockerfiles for test environments
+    *   [ ] Integrate Docker builds into CI pipeline
+    *   [ ] Add documentation for running tests in Docker 
