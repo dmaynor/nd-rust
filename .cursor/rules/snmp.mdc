@@ -1,0 +1,45 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+# SNMP Integration Rules
+
+## Implementation Challenges and Solutions for SNMP in Rust
+
+When working with SNMP libraries in Rust, particularly with the snmp 0.2.2 crate:
+
+1. **Poor Documentation Awareness**
+   - The snmp 0.2.2 crate is only 4.26% documented
+   - Rely on source code examination rather than documentation
+   - Test small segments before implementing full solutions
+
+2. **Working with ObjectIdentifier**
+   - Use the `read_name` method with a buffer for extracting OID values:
+   ```rust
+   let mut oid_buf = [0u32; 128]; // Buffer needed for read_name
+   let oid_parts = oid.read_name(&mut oid_buf)?;
+   let oid_vec = oid_parts.to_vec(); // Convert to owned Vec<u32>
+   ```
+
+3. **SNMP Value Variants**
+   - The crate uses `Value::Unsigned32` instead of `Value::Gauge32`
+   - Always match all possible variants to prevent runtime errors
+   - Include a catch-all pattern with appropriate logging
+
+4. **Error Handling**
+   - Convert SNMP-specific errors to application errors
+   - Provide descriptive error messages for troubleshooting
+   - Handle potential socket resolution failures
+
+5. **Async Boundaries**
+   - Use `tokio::task::spawn_blocking` for synchronous SNMP operations
+   - Properly propagate errors across the async boundary
+   - Consider timeout handling for network operations
+
+6. **Best Practices**
+   - Create owned value representations for passing between threads
+   - Prefer explicit type conversions over implicit ones
+   - Use descriptive logging for warnings and errors
+
+Always inspect the source code when working with poorly documented crates, and implement incremental testing to validate assumptions about the API. 
