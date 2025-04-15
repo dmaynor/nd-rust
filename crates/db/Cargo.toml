@@ -4,3 +4,12 @@ version = "0.1.0"
 edition = "2024"
 
 [dependencies]
+nd_core = { path = "../nd_core" } # Depend on core for Settings
+sqlx = { version = "0.7", features = [ "runtime-tokio", "postgres", "uuid", "time", "ipnetwork", "macros" ] }
+tokio = { version = "1", features = ["rt-multi-thread"] } # Needed for sqlx runtime
+uuid = { version = "1", features = ["v4", "serde"] }
+time = { version = "0.3", features = ["serde"] }
+ipnetwork = { version = "0.20", features = ["serde"] }
+thiserror = "1.0"
+url = "2.5"
+tracing = "0.1" # Added for logging within db crate
