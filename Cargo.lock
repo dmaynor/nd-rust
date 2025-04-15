@@ -311,6 +311,17 @@ dependencies = [
 ]
 
 [[package]]
+name = "discovery"
+version = "0.1.0"
+dependencies = [
+ "db",
+ "ipnetwork",
+ "nd_core",
+ "thiserror 1.0.69",
+ "tracing",
+]
+
+[[package]]
 name = "displaydoc"
 version = "0.2.5"
 source = "registry+https://github.com/rust-lang/crates.io-index"

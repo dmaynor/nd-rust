@@ -28,5 +28,6 @@ impl Settings {
     }
 }
 
-mod discovery;
-pub use discovery::{DiscoveryJob, DiscoveryResult, DiscoveryManager};
+// Remove discovery re-export
+// mod discovery;
+// pub use discovery::{DiscoveryJob, DiscoveryResult, DiscoveryManager, DiscoveryTarget, DiscoveryError, SnmpCredentials};
