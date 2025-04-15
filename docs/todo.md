@@ -159,12 +159,12 @@
     *   [ ] Implement Session Management
 
 ## Feature: User Interfaces (API, Web, CLI, Viz)
-*   [ ] **Backend API**
-    *   [ ] Choose and integrate a web framework (e.g., `Axum`, `Actix Web`)
-    *   [ ] Set up basic web server structure (`web` crate)
+*   [x] **Backend API**
+    *   [x] Choose and integrate a web framework (e.g., `Axum`, `Actix Web`)
+    *   [x] Set up basic web server structure (`web` crate)
     *   [ ] *Post-Blocker Task:* Refactor API server setup if needed (e.g., consistency between Axum/Actix)
-    *   [ ] Implement Read-Only API Endpoints
-        *   [ ] `/api/devices`, `/api/devices/{id}`
+    *   [x] Implement Read-Only API Endpoints
+        *   [x] `/api/devices`, `/api/devices/{id}`
         *   [ ] `/api/search/mac/{mac_address}`, `/api/search/ip/{ip_address}`
     *   [ ] Implement API Endpoints for User Management
     *   [ ] Implement API Endpoints for Port Control
@@ -212,7 +212,7 @@
     *   [ ] Finalize Binary executables (`daemon`, `cli`, `web`, `db` tool?)
     *   [ ] Create Shell wrappers
     *   [ ] Packaging (Docker image, system packages?)
-    *   [ ] Setup Docker Compose for Development Database (Issue #44)
+    *   [x] Setup Docker Compose for Development Database (Issue #44)
     *   [ ] Build and execution support **[Unblocked once main build issue fixed]**
 *   [ ] **Testing**
     *   [ ] Add comprehensive unit tests for all modules
