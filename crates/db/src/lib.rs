@@ -1,13 +1,10 @@
 use sqlx::postgres::{PgPool, PgPoolOptions};
 use nd_core::Settings;
 use std::time::Duration;
-use ipnetwork::IpNetwork; // Needed for get_device_by_ip
-use uuid::Uuid; // Needed for get_device_by_ip
+use ipnetwork::IpNetwork;
 
 mod models;
 pub use models::{Device, DeviceStatus, Interface};
-
-pub use sqlx::PgPool;
 
 #[derive(Debug, thiserror::Error)]
 pub enum DbError {

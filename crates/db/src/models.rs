@@ -1,4 +1,4 @@
-use time::{OffsetDateTime, PrimitiveDateTime};
+use time::OffsetDateTime;
 use uuid::Uuid;
 use ipnetwork::IpNetwork;
 use sqlx::{FromRow, Type};
@@ -26,11 +26,8 @@ pub struct Device {
     pub os_version: Option<String>,
     pub serial_number: Option<String>,
     pub status: Option<DeviceStatus>, // Mapped from device_status enum
-    #[sqlx(default)] // Handle potential NULL in DB or missing field
     pub last_seen: Option<OffsetDateTime>, // TIMESTAMPTZ maps to OffsetDateTime
-    #[sqlx(default)]
     pub created_at: OffsetDateTime, 
-    #[sqlx(default)]
     pub updated_at: OffsetDateTime,
 }
 
@@ -51,10 +48,7 @@ pub struct Interface {
     pub oper_status: Option<String>,
     pub speed: Option<i64>, // BIGINT maps to i64
     pub mtu: Option<i32>,
-    #[sqlx(default)]
     pub last_changed: Option<OffsetDateTime>,
-    #[sqlx(default)]
     pub created_at: OffsetDateTime,
-    #[sqlx(default)]
     pub updated_at: OffsetDateTime,
 } 

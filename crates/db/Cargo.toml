@@ -13,3 +13,4 @@ ipnetwork = { version = "0.20", features = ["serde"] }
 thiserror = "1.0"
 url = "2.5"
 tracing = "0.1" # Added for logging within db crate
+serde = { version = "1.0", features = ["derive"] } # Add serde for model derives
