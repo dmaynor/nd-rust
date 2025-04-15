@@ -212,6 +212,7 @@
     *   [ ] Finalize Binary executables (`daemon`, `cli`, `web`, `db` tool?)
     *   [ ] Create Shell wrappers
     *   [ ] Packaging (Docker image, system packages?)
+    *   [ ] Setup Docker Compose for Development Database (Issue #44)
     *   [ ] Build and execution support **[Unblocked once main build issue fixed]**
 *   [ ] **Testing**
     *   [ ] Add comprehensive unit tests for all modules

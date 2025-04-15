@@ -13,6 +13,20 @@ pub enum DeviceStatus {
     Unknown,
 }
 
+// Allow converting from String (case-insensitive) for manual mapping
+impl TryFrom<String> for DeviceStatus {
+    type Error = String;
+
+    fn try_from(value: String) -> Result<Self, Self::Error> {
+        match value.to_lowercase().as_str() {
+            "up" => Ok(DeviceStatus::Up),
+            "down" => Ok(DeviceStatus::Down),
+            "unknown" => Ok(DeviceStatus::Unknown),
+            _ => Err(format!("Invalid device status string: {}", value)),
+        }
+    }
+}
+
 // Struct corresponding to the 'devices' table
 #[derive(Debug, Clone, PartialEq, FromRow, Serialize, Deserialize)]
 pub struct Device {
