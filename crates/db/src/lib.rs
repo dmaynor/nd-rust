@@ -2,6 +2,7 @@ use sqlx::postgres::PgPoolOptions;
 use nd_core::Settings;
 use std::time::Duration;
 use ipnetwork::IpNetwork;
+use uuid::Uuid;
 
 mod models;
 pub use models::{Device, DeviceStatus, Interface};
@@ -211,6 +212,45 @@ pub async fn list_devices(pool: &PgPool) -> Result<Vec<Device>, DbError> {
         });
     }
     Ok(devices)
+}
+
+/// Retrieves a device by its unique primary key ID.
+pub async fn get_device_by_id(pool: &PgPool, device_id: Uuid) -> Result<Device, DbError> {
+    let row = sqlx::query!(
+        r#"SELECT 
+              id, hostname, ip_address, sys_name, sys_descr, vendor, model, 
+              os_version, serial_number, 
+              status::text as "status: Option<String>", 
+              last_seen, created_at, updated_at 
+           FROM devices WHERE id = $1"#,
+        device_id
+    )
+    .fetch_one(pool)
+    .await?; 
+    
+    // Map the result row (handle Option<Option<String>> for status)
+    let status_opt_opt: Option<Option<String>> = row.status;
+    let status: Option<DeviceStatus> = status_opt_opt
+        .flatten() // Flatten Option<Option<String>> to Option<String>
+        .map(|s| DeviceStatus::try_from(s))
+        .transpose()
+        .map_err(DbError::MappingError)?;
+
+    Ok(Device {
+        id: row.id,
+        hostname: row.hostname,
+        ip_address: row.ip_address,
+        sys_name: row.sys_name,
+        sys_descr: row.sys_descr,
+        vendor: row.vendor,
+        model: row.model,
+        os_version: row.os_version,
+        serial_number: row.serial_number,
+        status, // Use the mapped status
+        last_seen: row.last_seen,
+        created_at: row.created_at,
+        updated_at: row.updated_at,
+    })
 }
 
 #[cfg(test)]

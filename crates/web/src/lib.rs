@@ -1,15 +1,16 @@
 use axum::{
     routing::get,
     response::{IntoResponse, Response, Json},
-    extract::State,
+    extract::{State, Path},
     http::StatusCode,
     Router,
 };
-use db::{PgPool, DbError, Device};
+use db::{PgPool, DbError, Device, get_device_by_id};
 use nd_core::Settings;
 use std::net::SocketAddr;
 use tower_http::trace::{TraceLayer, DefaultMakeSpan};
 use tower_http::cors::{CorsLayer, Any};
+use uuid::Uuid;
 
 // Define an AppState that holds the database pool
 #[derive(Clone)]
@@ -22,6 +23,7 @@ struct AppState {
 enum ApiError {
     DbError(DbError),
     InternalError(String),
+    BadRequest(String),
 }
 
 // Implement IntoResponse for ApiError to convert errors into HTTP responses
@@ -34,12 +36,19 @@ impl IntoResponse for ApiError {
                     tracing::error!(error = %e, "Database query failed");
                     (StatusCode::INTERNAL_SERVER_ERROR, "Database error".to_string())
                 }
-                // Add other DbError variants as needed
+                DbError::MappingError(s) => {
+                    tracing::error!(error = %s, "Database mapping error");
+                    (StatusCode::INTERNAL_SERVER_ERROR, "Data mapping error".to_string())
+                }
                 _ => (StatusCode::INTERNAL_SERVER_ERROR, "An unexpected database error occurred".to_string()),
             },
             ApiError::InternalError(msg) => {
                 tracing::error!(error = %msg, "Internal server error");
                 (StatusCode::INTERNAL_SERVER_ERROR, "Internal server error".to_string())
+            }
+            ApiError::BadRequest(msg) => {
+                 tracing::warn!(error = %msg, "Bad request");
+                (StatusCode::BAD_REQUEST, msg)
             }
         };
         (status, Json(serde_json::json!({ "error": error_message }))).into_response()
@@ -62,18 +71,29 @@ async fn root_handler() -> &'static str {
 async fn list_devices_handler(
     State(state): State<AppState>
 ) -> Result<Json<Vec<Device>>, ApiError> {
-    tracing::info!("Handling request for /api/devices");
+    tracing::info!("Handling GET /api/devices");
     let devices = db::list_devices(&state.db_pool).await?;
     Ok(Json(devices))
 }
 
+// Handler to get a single device by ID
+async fn get_device_handler(
+    State(state): State<AppState>,
+    Path(device_id): Path<Uuid>,
+) -> Result<Json<Device>, ApiError> {
+    tracing::info!(%device_id, "Handling GET /api/devices/:id");
+    let device = get_device_by_id(&state.db_pool, device_id).await?;
+    Ok(Json(device))
+}
+
 // Function to create and run the Axum server
-pub async fn run_server(pool: PgPool, settings: &Settings) -> Result<(), Box<dyn std::error::Error>> {
+pub async fn run_server(pool: PgPool, _settings: &Settings) -> Result<(), Box<dyn std::error::Error>> {
     let app_state = AppState { db_pool: pool };
 
     // Define API routes
     let api_routes = Router::new()
-        .route("/devices", get(list_devices_handler));
+        .route("/devices", get(list_devices_handler))
+        .route("/devices/:id", get(get_device_handler));
         // Add more API routes here later
 
     // Define the main application router
