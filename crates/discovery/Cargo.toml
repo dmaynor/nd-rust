@@ -1,0 +1,15 @@
+[package]
+name = "discovery"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+nd_core = { path = "../nd_core" }
+db = { path = "../db" }
+
+ipnetwork = "0.20"
+thiserror = "1.0"
+tracing = "0.1"
+
+# We might need tokio later if discovery becomes async internally
+# tokio = { version = "1", features = ["full"] } 
