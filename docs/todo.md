@@ -26,8 +26,8 @@
     *   [ ] *Post-Blocker Task:* Ensure all required DB trait imports are present (e.g., sqlx::Row)
 
 ## Feature: Network Discovery & Data Models
-*   [ ] **Core Data Models**
-    *   [ ] Implement data models (Rust structs for Device, Interface, etc.)
+*   [x] **Core Data Models**
+    *   [x] Implement data models (Rust structs for Device, Interface, etc.)
     *   [ ] *Post-Blocker Task:* Fix struct field mismatches (e.g., hostname, sysname, vendor)
     *   [ ] *Post-Blocker Task:* Resolve type mismatches (e.g., Uuid vs Option<i64>, String vs IpAddr)
     *   [ ] *Post-Blocker Task:* Update all usages of Device/related types in dependent modules (db, api, etc.)
